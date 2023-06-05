@@ -7,9 +7,9 @@ local function handler(msg, editBox)
     if msg == 'move' then
         movable = not movable
         if movable then
-            addon.makeContainerFrameMovable(addon.lootFrame)
+            addon.makeContainerFrameMovable()
         else
-            addon.makeContainerFrameUnmovable(addon.lootFrame)
+            addon.makeContainerFrameUnmovable()
         end
     else
         print(slashHelpText)
