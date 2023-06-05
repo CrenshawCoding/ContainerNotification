@@ -20,9 +20,9 @@ containerFrameTexture:SetTexture(DEFAULT_TEXTURE)
 containerFrameTexture:SetAllPoints()
 
 -- Frame Text:
-local containerFrameText = containerFrame:CreateFontString(nil,"ARTWORK")
+local containerFrameText = containerFrame:CreateFontString(nil, "ARTWORK")
 containerFrameText:SetFont(FONT, 18, "OUTLINE")
-containerFrameText:SetPoint("CENTER",0,0)
+containerFrameText:SetPoint("CENTER", 0, 0)
 
 -- Functions for modifiying the Frame:
 local updateTexture = function(tex)
@@ -30,7 +30,7 @@ local updateTexture = function(tex)
 end
 
 local updateText = function(text)
-    containerFrameText = text
+    containerFrameText:SetText(text)
 end
 
 local updateMacroText = function(macrotext)
@@ -51,29 +51,29 @@ local updateContainerFrame = function (texture, text, macrotext)
     updateMacroText(macrotext)
 end
 
-local makeContainerFrameMovable = function(frame)
+local makeContainerFrameMovable = function()
     addon.moveMode = true
-    frame:Show()
-    frame:SetMovable(true)
-    frame:SetScript("OnMouseDown", function(self, button)
+    containerFrame:Show()
+    containerFrame:SetMovable(true)
+    containerFrame:SetScript("OnMouseDown", function(self, button)
         self:StartMoving()
     end)
-    frame:SetScript("OnMouseUp", function(self, button)
+    containerFrame:SetScript("OnMouseUp", function(self, button)
         self:StopMovingOrSizing()
     end)
     updateTexture(DEFAULT_TEXTURE)
     containerFrameText:SetText(MOVING_TEXT)
-    frame:Disable()
+    containerFrame:Disable()
 end
 
-local makeContainerFrameUnmovable = function(frame)
+local makeContainerFrameUnmovable = function()
     addon.moveMode = false
-    frame:SetMovable(false)
-    frame:SetScript("OnMouseDown", nil)
-    frame:SetScript("OnMouseUp", nil)
-    frame:Enable()
+    containerFrame:SetMovable(false)
+    containerFrame:SetScript("OnMouseDown", nil)
+    containerFrame:SetScript("OnMouseUp", nil)
+    containerFrame:Enable()
     containerFrameText:SetText(nil)
-    frame:Hide()
+    containerFrame:Hide()
 end
 
 -- Exports:

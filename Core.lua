@@ -3,9 +3,10 @@ local BAG_UPDATE_EVENT = "BAG_UPDATE"
 
 local DEBUG = true
 
-addon.lootFrame:RegisterEvent(BAG_UPDATE_EVENT)
+local eventFrame = CreateFrame("frame")
+eventFrame:RegisterEvent(BAG_UPDATE_EVENT)
 
-addon.lootFrame:SetScript("OnEvent", function(self, event, ...)
+eventFrame:SetScript("OnEvent", function(self, event, ...)
     if not addon.moveMode and event == BAG_UPDATE_EVENT then
         local bag_id = select(1, ...) -- Id of the bag in which a change occured
         for i=1, C_Container.GetContainerNumSlots(bag_id) do
