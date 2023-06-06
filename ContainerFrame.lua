@@ -46,9 +46,9 @@ local hideContainerFrame = function ()
 end
 
 local updateContainerFrame = function (texture, text, macrotext)
-    updateTexture(texture)
-    updateText(text)
-    updateMacroText(macrotext)
+    if texture then updateTexture(texture) end
+    if text then updateText(text) end
+    if macrotext then updateMacroText(macrotext) end
 end
 
 local makeContainerFrameMovable = function()
