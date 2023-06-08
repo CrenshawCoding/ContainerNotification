@@ -25,9 +25,6 @@ local lockedItems = {
     186161, --stygian-lockbox
     5758, --mithril-lockbox
     4632, --ornate-bronze-lockbox
-    -- custom stuff:
-    187351, --Stygic Cluster
-    198657 -- forgotten-jewelry-box
 }
 
 local whitelist = {
@@ -42,6 +39,12 @@ local whitelist = {
     193899, -- Primalweave Spindle
 }
 
+local blacklist = {
+    187351, --Stygic Cluster
+    198657, -- forgotten-jewelry-box
+}
+
 -- Exports:
 addon.lockedItems = lockedItems
 addon.whitelist = whitelist
+addon.blacklist = blacklist

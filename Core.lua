@@ -27,12 +27,12 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
                     
                     local texture = containerItemInfo["iconFileID"]
                     local itemName = C_Item.GetItemNameByID(itemID)
-                    debug("Found openable " .. itemName)
                     --local is_lockbox = aura_env.is_locked_item(itemID)
                     --local is_ignored_item = aura_env.is_ignored_item(itemID)
                     
                     --if not is_lockbox and not is_ignored_item then
                     local macrotext = format("/use %s", itemName)
+                    debug(macrotext)
                     if not InCombatLockdown() then -- Cannot display Frame in combat
                         addon.updateContainerFrame(texture, itemName, macrotext)
                         addon.showContainerFrame()
@@ -56,10 +56,10 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
         -- in case the first event finds an item and the second doesnt
         if foundItem.bag_id and foundItem.slot then
             if C_Container.GetContainerItemInfo(foundItem.bag_id, foundItem.slot) and
-              not addon.containerItemIsOpenable(C_Container.GetContainerItemInfo(foundItem.bag_id, foundItem.slot)) then
-                debug("hiding")
-                addon.hideContainerFrame()
+            addon.containerItemIsOpenable(C_Container.GetContainerItemInfo(foundItem.bag_id, foundItem.slot)) then
+                return -- There still is an openable item
             end
         end
+        addon.hideContainerFrame() -- No openable item exists
     end
 end)
